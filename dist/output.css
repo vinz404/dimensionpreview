@@ -390,7 +390,7 @@ Make sure disabled buttons don't get the pointer cursor.
 /*
 1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
 2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-   This can trigger a poorly considered lint error in some tools but is included by design.
+3. This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
 img,
@@ -400,8 +400,9 @@ canvas,
 audio,
 iframe,
 embed,
+
 object {
-  display: block;
+  display:block;
   /* 1 */
   vertical-align: middle;
   /* 2 */
@@ -474,8 +475,35 @@ html {
   --tw-backdrop-sepia:  ;
 }
 
+#page-menu, #page-menu-wrap {
+  height: 70px;
+  line-height: 70px;
+  position: relative;
+  color: #3b82f6;
+  display: block;
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 10%);
+}
+
 .container{
   width: 100%;
+}
+
+.container-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 40%; /* 1:1 Aspect Ratio */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @media (min-width: 640px){
@@ -506,6 +534,18 @@ html {
   .container{
     max-width: 1536px;
   }
+}
+
+.cardBox {
+  position: relative;
+  width: 100%;
+  display: grid;
+}
+
+.cardBox .card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .fixed{
@@ -678,6 +718,10 @@ html {
 
 .h-72{
   height: 18rem;
+}
+
+.h-80{
+  height: 500px;
 }
 
 .w-44{
@@ -975,6 +1019,11 @@ html {
   padding-right: 1.5rem;
 }
 
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1144,6 +1193,46 @@ html {
   line-height: 2;
 }
 
+.border-t {
+  border-top-width: 1px;
+}
+
+.h-px {
+  height: 1px;
+}
+
+.cnt {
+  display: grid;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.button2 {
+  background-color: #008CBA;
+} /* Blue */
+
+.page-section .section {
+  padding: 40px 0;
+}
+.parallax {
+  background-attachment: fixed;
+  background-color: transparent;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
 .text-primary-600{
   --tw-text-opacity: 1;
   color: rgb(238 124 22 / var(--tw-text-opacity));
@@ -1275,12 +1364,14 @@ html {
 
 .swiper {
   width: 100%;
-  height: 100%;
+  height: 450px;
+  
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
+  margin-bottom: 80px;
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
@@ -1289,6 +1380,12 @@ html {
 
 .swiper-slide img {
   display: block;
+}
+
+.hover\:hv-button2:hover{
+  --tw-text-opacity: 1;
+  color: white;
+  background-color: #0a6786;
 }
 
 .hover\:bg-primary-600:hover{
@@ -1491,8 +1588,8 @@ html {
   }
 
   .lg\:px-36{
-    padding-left: 9rem;
-    padding-right: 9rem;
+    padding-left: 2rem;
+    padding-right: 5rem;
   }
 
   .lg\:px-5{
@@ -1547,6 +1644,10 @@ html {
 
   .xl\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .xl\:gap-12{
